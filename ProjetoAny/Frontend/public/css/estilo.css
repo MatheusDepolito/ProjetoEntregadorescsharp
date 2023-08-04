@@ -1,0 +1,29 @@
+/* TabelaEntregadores.css (ou qualquer outro arquivo de estilo) */
+
+/* Estilo para a barra de rolagem */
+/* Estas regras aplicam-se somente para navegadores WebKit (Chrome, Safari, Edge) */
+/* Para estilizar a barra de rolagem em navegadores Firefox, utilize @-moz-document rule */
+/* ou utilize uma biblioteca de estilos específica para estilizar barras de rolagem em diferentes navegadores */
+
+/* Estiliza o contêiner da barra de rolagem */
+::-webkit-scrollbar {
+    width: 0px; /* Largura da barra de rolagem */
+    background-color: #ffffff; /* Cor de fundo da barra de rolagem */
+  }
+  
+  /* Estiliza o "polegar" (a parte que você arrasta para rolar) da barra de rolagem */
+  ::-webkit-scrollbar-thumb {
+    background-color: #ffffff; /* Cor do polegar */
+    border-radius: 0px; /* Bordas arredondadas */
+  }
+  
+  /* Estiliza o "polegar" quando o usuário está interagindo com a barra de rolagem */
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* Cor do polegar em hover */
+  }
+  
+  /* Estiliza o "polegar" quando o usuário está arrastando a barra de rolagem */
+  ::-webkit-scrollbar-thumb:active {
+    background-color: #333; /* Cor do polegar quando arrastado */
+  }
+  
