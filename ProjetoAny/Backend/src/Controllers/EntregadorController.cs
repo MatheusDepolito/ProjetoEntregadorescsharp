@@ -35,8 +35,6 @@ namespace ProjetoAny.Backend.src.Controllers
         [HttpGet("getByCodigo")]
         public async Task<IActionResult> GetEntregadorByCodigo([FromBody] Entregador ent)
         {
-            //if(!int.TryParse(ent.Codigo.ToString(), out int codigoNum))
-            //    return ResponseBadRequest("O código deve ser um número válido.");
             try
             {
                 var entregador = await entregadorModel.GetEntregadorByCodigo(ent);
@@ -75,7 +73,7 @@ namespace ProjetoAny.Backend.src.Controllers
         {
             try
             {
-                bool deletedSuccess = await entregadorModel.DeleteEntregador(ent.Codigo);
+                bool deletedSuccess = await entregadorModel.DeleteEntregador(ent);
                 if(!deletedSuccess) 
                     return ResponseBadRequest("Entregador já deletado ou não existe.");
                 else 

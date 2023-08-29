@@ -2,7 +2,7 @@
 {
     public class Entregador
     {
-        public int Codigo { get; set; }
+        public int? Codigo { get; set; }
         public string? NomeCompleto { get; set; }
         public int? Disponivel24Horas { get; set; }
         public string? Veiculo { get; set; }

@@ -51,7 +51,7 @@ namespace ProjetoAny.Backend.src.Models
                 string sql = "SELECT * FROM entregadores WHERE codigo = @codigo";
                 var parameters = new Dictionary<string, object>
                 {
-                    { "@codigo", ent.Codigo }
+                    { "@codigo", ent.Codigo! }
                 };
                 using var reader = await this.DbApp.MakeQuerieAsync(sql, parameters);
                 Entregador? entregador = null;
@@ -60,17 +60,17 @@ namespace ProjetoAny.Backend.src.Models
                     
                 if(await reader.ReadAsync()){
                     entregador = new Entregador
-                    (
-                        reader.GetInt32(0),
-                        reader.GetString(1),
-                        reader.GetInt32(2),
-                        reader.GetString(3),
-                        reader.GetString(4),
-                        reader.GetString(5)
-                    );  
-                }
+                    {
+                        Codigo = reader.GetInt32(0),
+                        NomeCompleto = reader.GetString(1),
+                        Disponivel24Horas = reader.GetInt32(2),
+                        Veiculo = reader.GetString(3),
+                        Whatsapp = reader.GetString(4),
+                        DisponivelTipoEntrega = reader.GetString(5)
 
-                return ent;
+                    };
+                }
+                return entregador;
             }
             catch (Exception ex)
             {  
@@ -86,7 +86,7 @@ namespace ProjetoAny.Backend.src.Models
                 
                 var parameters = new Dictionary<string, object>
                 {
-                    { "@codigo", ent.Codigo  },
+                    { "@codigo", ent.Codigo!  },
                     { "@nomeCompleto", ent.NomeCompleto!  },
                     { "@disponivel24Horas", ent.Disponivel24Horas! },
                     { "@veiculo",  ent.Veiculo! },
@@ -103,14 +103,14 @@ namespace ProjetoAny.Backend.src.Models
                 throw new Exception(ex.Message); 
             }
         }
-        public async Task<bool> DeleteEntregador(int codigo) 
+        public async Task<bool> DeleteEntregador(Entregador ent) 
         {
             try
             {   
                 string sql = "DELETE FROM entregadores WHERE codigo = @codigo";
                 var parameters = new Dictionary<string, object>
                 {
-                    { "@codigo", codigo }    
+                    { "@codigo", ent.Codigo! }    
                 };
 
                 var reader = await DbApp.MakeNonQueryAsync(sql, parameters);
@@ -129,7 +129,7 @@ namespace ProjetoAny.Backend.src.Models
 
                 var parameters = new Dictionary<string, object>
                 {
-                    { "@codigo", ent.Codigo  },
+                    { "@codigo", ent.Codigo!  },
                     { "@nomeCompleto", ent.NomeCompleto!  },
                     { "@disponivel24Horas", ent.Disponivel24Horas! },
                     { "@veiculo",  ent.Veiculo! },

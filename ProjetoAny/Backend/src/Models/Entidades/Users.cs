@@ -12,7 +12,7 @@ namespace ProjetoAny.Backend.src.Models.Entidades
         public int? Status { get; set; }
         public DateTime? CreatedOn { get; set; }
 
-        public Users(int Id, string FirstName, string LastName, string Password, string Email, decimal Fund, string Type, int Status, DateTime CreatedOn){
+        public Users(int Id, string FirstName, string LastName, string Password, string Email, decimal? Fund, string? Type, int? Status, DateTime? CreatedOn){
             this.Id = Id;
             this.FirstName = FirstName;
             this.LastName = LastName;

@@ -23,13 +23,13 @@ export default function Header() {
   return (
     <Navbar bg="dark" variant="dark" expand="md" collapseOnSelect ref={navbarRef}>
       <Container>
-        <Navbar.Brand href="/">Seu Entregador</Navbar.Brand>
+        <Navbar.Brand href="/app/home">Seu Entregador</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link as={Link} to="/home">Home</Nav.Link>
-            <Nav.Link as={Link} to="/cadastrarEntregadores">Cadastrar Entregadores</Nav.Link>
-            <Nav.Link as={Link} to="/visualizarEntregadores">Visualizar Entregadores</Nav.Link>
+            <Nav.Link as={Link} to="/app/home">Home</Nav.Link>
+            <Nav.Link as={Link} to="/app/cadastrarEntregadores">Cadastrar Entregadores</Nav.Link>
+            <Nav.Link as={Link} to="/app/visualizarEntregadores">Visualizar Entregadores</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

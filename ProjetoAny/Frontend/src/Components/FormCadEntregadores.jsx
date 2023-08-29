@@ -110,6 +110,7 @@ export default function FormCadUsuarios() {
             <Row className="mb-3">
               <Form.Group as={Col} controlId="formGridCodigo">
                 <Form.Control
+                  
                   type="number"
                   placeholder="Código"
                   value={codigo}

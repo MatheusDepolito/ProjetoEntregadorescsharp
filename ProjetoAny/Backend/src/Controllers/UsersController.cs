@@ -18,55 +18,72 @@ namespace ProjetoAny.Backend.src.Controllers
         }
 
 
-    [HttpPost("login")]
-    public async Task<IActionResult> Login([FromBody]Users user) 
-    {
-        try
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody]Users user) 
         {
-            var authenticatedUser = await this.usersModel.Login(user);
-            if(authenticatedUser == null)
-                return ResponseBadRequest("Usuario não achado.");
-            else
-                return ResponseOk(authenticatedUser);
+            try
+            {
+                var authenticatedUser = await this.usersModel.Login(user);
+                if(authenticatedUser == null)
+                    return ResponseBadRequest("Usuario não achado.");
+                else
+                    return ResponseOk(authenticatedUser);
+            }
+            catch (Exception ex)
+            {
+                return ResponseInternalServerError(ex.Message);
+            }
         }
-        catch (Exception ex)
+        
+        [HttpPost("cadastrar")]
+        public async Task<IActionResult> CadastrarUsers([FromBody]Users user)
         {
-            return ResponseInternalServerError(ex.Message);
-        }
-    }
-    [HttpPost("cadastrar")]
-    public async Task<IActionResult> CadastrarUsers([FromBody]Users user)
-    {
-        try
-        {
-            bool cadastroSuccess = await this.usersModel.Register(user);
-            if(!cadastroSuccess)
-                return ResponseBadRequest("Erro ao cadastrar usuario.");
-            else
-                return ResponseCreated();
-        }
-        catch (Exception ex)
-        {
-            return ResponseInternalServerError(ex.Message);
-        }
-    }
-    [HttpPut("updateProfile")]
-    public async Task<IActionResult> UpdateProfile([FromBody]Users user)
-    {
-        try
-        {
-            bool updateProfile = await this.usersModel.UpdateProfile(user);
-            if(!updateProfile)
-                return ResponseBadRequest("Erro ao atualizar os dados do usuario.");  
-            else 
-                return ResponseOk("Usuario atualizado com sucesso.");      
-        }
-        catch (Exception ex)
-        {          
-            return ResponseInternalServerError(ex.Message);
+            try
+            {
+                bool cadastroSuccess = await this.usersModel.Register(user);
+                if(!cadastroSuccess)
+                    return ResponseBadRequest("Erro ao cadastrar usuario.");
+                else
+                    return ResponseCreated();
+            }
+            catch (Exception ex)
+            {
+                return ResponseInternalServerError(ex.Message);
+            }
         }
 
-    }
+        [HttpPost("viewUser")]
+        public async Task<IActionResult> ViewUser([FromBody]Users user)
+        {
+            try
+            {
+                var us = await usersModel.ViewUser(user);
+                if(us != null)
+                    return ResponseOk(us);
+                else
+                    return ResponseBadRequest("User não existe.");
+            }
+            catch (Exception ex)
+            {            
+                return ResponseInternalServerError(ex);
+            }
+        }
 
+        [HttpPut("updateProfile")]
+        public async Task<IActionResult> UpdateProfile([FromBody]Users user)
+        {
+            try
+            {
+                bool updateProfile = await this.usersModel.UpdateProfile(user);
+                if(!updateProfile)
+                    return ResponseBadRequest("Erro ao atualizar os dados do usuario.");  
+                else 
+                    return ResponseOk("Usuario atualizado com sucesso.");      
+            }
+            catch (Exception ex)
+            {          
+                return ResponseInternalServerError(ex.Message);
+            }
+        }
     }
 }
